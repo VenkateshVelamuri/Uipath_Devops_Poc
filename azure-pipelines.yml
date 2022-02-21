@@ -20,4 +20,6 @@ steps:
     projectJsonPath: '$(Build.SourcesDirectory)\Project.Json'
     outputType: 'Process'
     orchestratorConnection: 'Uipath_test_Connection'
-    outputPath: '$(Build.ArtifactStagingDirectory)\Output'
+    outputPath: '$(Build.ArtifactStagingDirectory)\Output'  
+- publish: '$(Build.ArtifactStagingDirectory)\Output' 
+  artifact: drop

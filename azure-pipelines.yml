@@ -1,0 +1,25 @@
+
+trigger:
+- master
+variables:
+ -name: agent.preferPowerShellOnConatiners
+ Value : 'True'
+
+pool:
+  vmImage: Windows-latest
+#container:
+  #image: techmuipathroot.azurecr.io/uipathrobot:59
+  #endpoint: techmuipathroot
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+- task: UiPathPack@2
+  inputs:
+    versionType: 'AutoVersion'
+    projectJsonPath: '$(Build.SourcesDirectory)'
+    outputType: 'Process'
+    orchestratorConnection: 'Uipath_test_Connection'
+    outputPath: '$(Build.ArtifactStagingDirectory)\Output'  
+- publish: '$(Build.ArtifactStagingDirectory)\Output' 
+  artifact: drop

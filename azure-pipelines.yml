@@ -23,3 +23,10 @@ steps:
     outputPath: '$(Build.ArtifactStagingDirectory)\Output'  
 - publish: '$(Build.ArtifactStagingDirectory)\Output' 
   artifact: drop
+- task: UiPathDeploy@2
+  inputs:
+    orchestratorConnection: 'Uipath_test_Connection'
+    packagesPath: '$(Build.ArtifactStagingDirectory)\Output'
+    folderName: 'Default'
+    environments: 'Dev'
+    entryPoints: 'Main.xaml'

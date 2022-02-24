@@ -23,11 +23,7 @@ steps:
     outputPath: '$(Build.ArtifactStagingDirectory)\Output'  
 - publish: '$(Build.ArtifactStagingDirectory)\Output' 
   artifact: drop
-pool:
-  vmImage: Windows-latest
-container:
-  image: techmuipathroot.azurecr.io/uipathrobot:59
-  endpoint: techmuipathroot
+
   
 - task: UiPathDeploy@2
   inputs:
